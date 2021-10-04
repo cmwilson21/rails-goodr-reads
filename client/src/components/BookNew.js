@@ -22,14 +22,13 @@ const BookNew = () => {
       'Accept': 'application/json',
       'Content-Type': 'application/json'
     }
-    const body = { form }
     const options = {
       method: "POST",
       headers,
-      body: JSON.stringify(body)
+      body: JSON.stringify(form)
     }
     await fetch('http://localhost:4000/books', options)
-    history.push('/books')
+    history.push('/books');
   }
 
   // const handleSubmit = e => {
@@ -43,7 +42,7 @@ const BookNew = () => {
   //     body: JSON.stringify(form)
   //   })
   //   .then(resp => resp.json())
-  //   .then(data => )
+  //   .then(data => history.push('/books'))
   // }
 
   return (
@@ -51,11 +50,13 @@ const BookNew = () => {
       <form onSubmit={handleSubmit}>
         <div>
           <label htmlFor="title">Title: </label>
-          <input type="text" id="title" value={form.title} onChange={handleChange} autoFocus={true} />
+          <input type="text" id="title" name="title" value={form.title} onChange={handleChange} autoFocus={true} />
         </div>
+        <br />
         <div>
           <label htmlFor="author">Author: </label>
-          <input type="text" id="author" value={form.author} onChange={handleChange} autoFocus={true} />
+          <input type="text" id="author" name="author" value={form.author} onChange={handleChange} autoFocus={true} />
+          <input type="submit" value={"Submit Book"}/>
         </div>
       </form>
     </div>

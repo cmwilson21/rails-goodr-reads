@@ -9,7 +9,7 @@ const BookList = () => {
       const resp = await fetch('http://localhost:4000/books')
       const data = await resp.json();
       setBooks(data)
-    } 
+    }
     loadBooks();
   }, [])
 
@@ -18,11 +18,11 @@ const BookList = () => {
   }
 
   const deleteBook = async id => {
-    await fetch(`http://localhost/3000/books/${id}`, {method: "DELETE"})
+    await fetch(`/books/${id}`, { method: "DELETE" })
     removeBook(id);
   }
 
-  const bookCard = books.map((book, index) => <BookCard key={index} book={book} deleteBook={deleteBook}/>)
+  const bookCard = books.map((book, index) => <BookCard key={index} book={book} deleteBook={deleteBook} />) 
 
 
   return (

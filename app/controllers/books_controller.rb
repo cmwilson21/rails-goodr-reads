@@ -35,7 +35,8 @@ class BooksController < ApplicationController
   def destroy
     @book = find_book
     if @book
-      book.destroy
+      @book.destroy
+      head :no_content
     else
       render_not_found
     end
@@ -47,7 +48,7 @@ class BooksController < ApplicationController
   end
 
   def find_book
-    Book.find_by(id: params[:id])
+    Book.find_by_id(params[:id])
   end
 
   def render_not_found
