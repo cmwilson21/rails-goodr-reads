@@ -20,16 +20,25 @@ class BooksController < ApplicationController
     if @book.save
       render json: @book, status: :created
     else
-      render json: {errors: books.errors.full_messages}, status: 422
+      render json: {errors: books.errors.full_messages}, status: :not_created
     end
   end
 
   def update
-
-  end
+      if @book.update(book_params)
+        render json: @book
+      else
+        render json: @book.errors, status: :unprocessable_entity
+      end
+    end
 
   def destroy
-
+    @book = find_book
+    if @book
+      book.destroy
+    else
+      render_not_found
+    end
   end
 
   private
